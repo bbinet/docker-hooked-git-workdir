@@ -33,8 +33,8 @@ repositories to checkout in the `/data/repositories` directory, and will
 checkout branches in `/data/checkout.`
 These paths can be customized by setting the following environment variables:
 
-    - `GIT_REPO_PATH`
-    - `GIT_WORKDIR_PATH`
+  - `GIT_REPO_PATH`
+  - `GIT_WORKDIR_PATH`
 
 For example:
 
