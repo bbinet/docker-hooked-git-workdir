@@ -6,6 +6,9 @@ RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
   git
 
+ADD run.sh /run.sh
+RUN chmod a+x /run.sh
+
 ADD git-workdir.sh /git-workdir.sh
 RUN chmod a+x /git-workdir.sh
 
