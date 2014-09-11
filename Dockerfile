@@ -11,6 +11,8 @@ RUN chmod a+x /run.sh
 
 ADD git-workdir.sh /git-workdir.sh
 RUN chmod a+x /git-workdir.sh
+ENV GIT_REPO_PATH /data/repositories
+ENV GIT_WORKDIR_PATH /data/workdir
 
 ADD hooked.cfg /etc/hooked.cfg
 

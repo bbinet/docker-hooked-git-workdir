@@ -2,9 +2,6 @@
 
 set -e
 
-repos="${GIT_REPO_PATH:-/data/repositories}"
-workdir="${GIT_WORKDIR_PATH:-/data/workdir}"
-
 if [ "$#" -ne 2 ]
 then
   echo "Usage: $0 <repository name> <branch>"
@@ -13,8 +10,8 @@ fi
 
 repo="$1"
 branch="$2"
-repo_path="${repos}/${repo}"
-branch_path="${workdir}/${repo}/${branch}"
+repo_path="${GIT_REPO_PATH}/${repo}"
+branch_path="${GIT_WORKDIR_PATH}/${repo}/${branch}"
 
 if [ ! -d "${repo_path}/.git" ]
 then
@@ -28,7 +25,7 @@ fi
 
 if [ ! -d "${branch_path}" ]
 then
-  mkdir -p "${workdir}/${repo}"
+  mkdir -p "${GIT_WORKDIR_PATH}/${repo}"
   sh /usr/share/doc/git/contrib/workdir/git-new-workdir \
     "${repo_path}" "${branch_path}" "${branch}"
 fi
