@@ -30,11 +30,11 @@ but this can by customized by providing your own hooked config in
 
 The `/data` directory is a volume and the `git-workdir.sh` script will look for
 repositories to checkout in the `/data/repositories` directory, and will
-checkout branches in `/data/checkout.`
+checkout branches in `/data/workdir.`
 These paths can be customized by setting the following environment variables:
 
-  - `GIT_REPO_PATH`
-  - `GIT_WORKDIR_PATH`
+  - `GIT_REPO_PATH` (defaults to `/data/repositories`)
+  - `GIT_WORKDIR_PATH` (defaults to `/data/workdir`)
 
 For example:
 
