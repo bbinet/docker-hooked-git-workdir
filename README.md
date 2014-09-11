@@ -27,6 +27,7 @@ port `80` from the `hooked-git-workdir` container to a host external port.
 By default, hooked is configured to always trigger the `git-workdir.sh`command,
 but this can by customized by providing your own hooked config in
 `/config/hooked.cfg`.
+
 If you want to checkout a private git repository, you can put your `id_rsa`
 ssh private key in the `/config` volume and provide a custom `git_ssh` script
 like the following:
@@ -36,7 +37,7 @@ like the following:
     /usr/bin/ssh -i /config/.ssh/id_rsa "$@"
 
 Then, you will have to set the following environment variable, for git to use
-you custom ssh private key:
+you custom `/config/.ssh/id_rsa` ssh private key:
 
   - `GIT_SSH=/config/git_ssh`
 
