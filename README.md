@@ -2,8 +2,8 @@ docker-hooked-git-workdir
 =========================
 
 Specialized [docker-hooked](https://github.com/bbinet/docker-hooked) container
-to keep git repositories checkouts up to date BitBucket of Github repositories
-are updated.
+to keep git repositories checkouts up to date when BitBucket or Github
+repositories are updated.
 
 Build
 -----
