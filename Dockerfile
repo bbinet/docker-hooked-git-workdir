@@ -20,6 +20,6 @@ VOLUME ["/data"]
 
 EXPOSE 80
 
-ENV EXEC_CMD "hooked /config/hooked.cfg"
+ENV EXEC_CMD hooked /config/hooked.cfg
 
 CMD ["/run.sh"]
