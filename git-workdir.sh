@@ -9,7 +9,7 @@ then
 fi
 
 repo="$1"
-branch="$2"
+branch="${2#"origin/"}"
 repo_path="${GIT_REPO_PATH}/${repo}"
 branch_path="${GIT_WORKDIR_PATH}/${repo}/${branch}"
 
