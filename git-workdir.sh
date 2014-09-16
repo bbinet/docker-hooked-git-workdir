@@ -19,18 +19,14 @@ then
   exit 1
 fi
 
-(cd "${repo_path}";
-  git fetch origin +refs/heads/${branch}:refs/remotes/origin/${branch}
-)
+git -C "${repo_path}" fetch origin +refs/heads/${branch}:refs/remotes/origin/${branch}
 
 if [ ! -d "${branch_path}" ]
 then
   mkdir -p "${GIT_WORKDIR_PATH}/${repo}"
   sh /usr/share/doc/git/contrib/workdir/git-new-workdir \
-    "${repo_path}" "${branch_path}" "${branch}"
+    "${repo_path}" "${branch_path}" "origin/${branch}"
 fi
 
-(cd ${branch_path};
-  git stash
-  git rebase origin/$branch
-)
+git -C "${branch_path}" stash --include-untracked
+git -C "${branch_path}" checkout origin/${branch}
