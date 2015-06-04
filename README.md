@@ -24,7 +24,7 @@ Run
 Then, when starting your `hooked-git-workdir` container, you will want to bind
 port `80` from the `hooked-git-workdir` container to a host external port.
 
-By default, hooked is configured to always trigger the `git-workdir.sh`command,
+By default, hooked is configured to always trigger the `git-workdir.sh` command,
 but this can by customized by providing your own hooked config in
 `/config/hooked.cfg`.
 
@@ -60,3 +60,43 @@ For example:
         -e GIT_SSH=/config/git_ssh \
         -p 80:80 \
         bbinet/hooked-git-workdir
+
+Add git Repos
+-------------
+
+To add a git repo:
+
+```
+$ sudo -s
+# cd /home/hooked/data
+# mkdir repositories
+# git clone https://github.com/me/my-repo
+Cloning into 'my-repo'...
+remote: Counting objects: 975, done.
+remote: Compressing objects: 100% (542/542), done.
+remote: Total 975 (delta 413), reused 975 (delta 413), pack-reused 0
+Receiving objects: 100% (975/975), 750.18 KiB, done.
+Resolving deltas: 100% (413/413), done.
+```
+
+Testing Web Hook
+----------------
+Use curl to hit the hook server:
+
+```
+$ curl -s localhost:8080/hooks/my-repo/master | python -mjson.tool
+{
+    "hooks": [
+        {
+            "branch": null,
+            "command": "/git-workdir.sh",
+            "cwd": null,
+            "name": "all",
+            "repository": null,
+            "stderr": "Note: checking out 'origin/master'.\n\nYou are in 'detached HEAD' state. You can look around, make experimental\nchanges and commit them, and you can discard any commits you make in this\nstate without impacting any branches by performing another checkout.\n\nIf you want to create a new branch to retain commits you create, you may\ndo so (now or later) by using -b with the checkout command again. Example:\n\n  git checkout -b new_branch_name\n\nHEAD is now at ca60959... Random commit message\nHEAD is now at ca60959... Random commit message\n",
+            "stdout": "No local changes to save\n"
+        }
+    ],
+    "success": true
+}
+```
