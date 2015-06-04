@@ -5,7 +5,7 @@ MAINTAINER Bruno Binet <bruno.binet@helioslite.com>
 ADD backports.list /etc/apt/sources.list.d/backports.list
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
-  openssh-client && \
+  openssh-client ca-certificates && \
   DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
   -t wheezy-backports git
 
