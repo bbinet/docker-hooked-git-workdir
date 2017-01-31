@@ -26,11 +26,11 @@ port `80` from the `hooked-git-workdir` container to a host external port.
 
 By default, hooked is configured to always trigger the `git-workdir.sh` command,
 but this can by customized by providing your own hooked config in
-`/config/hooked.cfg`.
+`/etc/hooked/hooked.cfg`.
 
-If you want to checkout a private git repository, you can put your `id_rsa`
-ssh private key in the `/config` volume and provide a custom `git_ssh` script
-like the following:
+If you want to checkout a private git repository, you can add your `id_rsa`
+ssh private key in a volume and provide a custom `git_ssh` script like the
+following:
 
     $ cat /config/git_ssh
     #!/bin/bash
@@ -41,13 +41,12 @@ you custom `/config/.ssh/id_rsa` ssh private key:
 
   - `GIT_SSH=/config/git_ssh`
 
-The `/data` directory is a volume and the `git-workdir.sh` script will look for
-repositories to checkout in the `/data/repositories` directory, and will
-checkout branches in `/data/workdir.`
+The `git-workdir.sh` script will look for repositories to checkout in the
+`$GIT_REPO_PATH` directory, and will checkout branches in `$GIT_WORKDIR_PATH`
 These paths can be customized by setting the following environment variables:
 
-  - `GIT_REPO_PATH` (defaults to `/data/repositories`)
-  - `GIT_WORKDIR_PATH` (defaults to `/data/workdir`)
+  - `GIT_REPO_PATH` (defaults to `/repositories`)
+  - `GIT_WORKDIR_PATH` (defaults to `/workdir`)
 
 For example:
 
